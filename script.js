@@ -1,9 +1,18 @@
-// Add a special wish when the button is clicked
-window.onload = () => {
-  const sound = new Audio("happy-birthday-song-background-music-295823.mp3");
-  sound.loop = true;
-  sound.play();
+const sound = new Audio("happy-birthday-song-background-music-295823.mp3");
+sound.loop = true;
+
+// Function to start music after user interaction
+const startMusic = () => {
+  sound.play().catch(error => console.error("Error playing sound:", error));
+  document.removeEventListener("click", startMusic);
+  document.removeEventListener("keydown", startMusic);
 };
+
+// Listen for user interaction
+document.addEventListener("click", startMusic);
+document.addEventListener("keydown", startMusic);
+
+// };
 const wishButton = document.querySelector(".wish-button");
 const message = document.querySelector(".message");
 const wishes = [
